@@ -1,0 +1,86 @@
+# static/css/style.css
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --spotify-dark-gray: #282828;
+    --spotify-light-gray: #B3B3B3;
+}
+
+body {
+    background-color: var(--spotify-black);
+    color: white;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sidebar {
+    background-color: var(--spotify-black);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-content {
+    background-color: #121212;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.navbar-brand {
+    color: var(--spotify-green) !important;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card {
+    background-color: var(--spotify-dark-gray);
+    transition: background-color 0.3s ease;
+}
+
+.card:hover {
+    background-color: #383838;
+}
+
+.btn-spotify {
+    background-color: var(--spotify-green);
+    color: white;
+    border: none;
+    padding: 8px 32px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.btn-spotify:hover {
+    background-color: #1ed760;
+    color: white;
+}
+
+.player {
+    background-color: var(--spotify-dark-gray);
+    border-top: 1px solid #404040;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.playlist-item {
+    background-color: var(--spotify-dark-gray);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.nav-link {
+    color: var(--spotify-light-gray);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: white;
+}

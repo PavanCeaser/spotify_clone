@@ -1,0 +1,25 @@
+{% extends 'music/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>New Releases</h1>
+    <div class="row">
+        {% for album in albums %}
+        <div class="col-md-3 mb-4">
+            <div class="card bg-dark text-white">
+                {% if album.cover %}
+                    <img src="{{ album.cover.url }}" class="card-img-top" alt="{{ album.title }}">
+                {% else %}
+                    <div class="bg-secondary" style="height: 200px;"></div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ album.title }}</h5>
+                    <p class="card-text">{{ album.artist.name }}</p>
+                    <a href="{% url 'music:album_detail' album.pk %}" class="btn btn-success">View Album</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

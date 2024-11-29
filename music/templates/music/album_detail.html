@@ -1,0 +1,74 @@
+<!-- # music/templates/music/album_detail.html -->
+{% extends 'music/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if album.cover %}
+                <img src="{{ album.cover.url }}" class="img-fluid" alt="{{ album.title }}">
+            {% else %}
+                <div class="bg-secondary" style="height: 300px;"></div>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h1>{{ album.title }}</h1>
+            <h3>{{ album.artist.name }}</h3>
+            <p>Genre: {{ album.genre }}</p>
+            <p>Release Date: {{ album.release_date }}</p>
+        </div>
+    </div>
+    <!-- ll -->
+    <button 
+    class="btn btn-link"
+    onclick="playTrack('{{ song.spotify_uri }}')"
+>
+
+<!-- cc -->
+    <i class="fas fa-play"></i>
+</button>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>Tracks</h2>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for song in songs %}
+                    <tr>
+                        <td>{{ song.track_number }}</td>
+                        <td>{{ song.title }}</td>
+                        <td>{{ song.duration }}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Play</button>
+                            {% if user.is_authenticated %}
+                            <div class="dropdown d-inline">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Add to Playlist
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {% for playlist in user.playlists.all %}
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'music:add_to_playlist' song.id playlist.id %}">
+                                            {{ playlist.name }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
